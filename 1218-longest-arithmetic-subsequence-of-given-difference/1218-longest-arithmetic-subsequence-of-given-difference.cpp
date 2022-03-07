@@ -10,7 +10,7 @@ public:
 	int ans=0;
         
 	for(int i=0;i<n;i++){
-		if(dp.count(arr[i]-difference)){// count doesnt create a copy in the map
+		if(dp.count(arr[i]-difference)){// count doesnt create a  copy in the map
             
 		  dp[arr[i]] = dp[arr[i]-difference]+1;
             
