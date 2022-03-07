@@ -7,7 +7,7 @@ public:
     // for(int i=0;i<n;i++)
     // dp[arr[i]]=1; // wrong we need the previous values before arr[i] and this may give be next values        
         
-	int ans=0;
+	int ans =0;
         
 	for(int i=0;i<n;i++){
 		if(dp.count(arr[i]-difference)){// count doesnt create a  copy in the map
