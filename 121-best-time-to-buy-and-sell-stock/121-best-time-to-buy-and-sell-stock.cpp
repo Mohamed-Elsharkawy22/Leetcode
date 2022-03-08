@@ -18,6 +18,7 @@ public:
           what is the best value for price[j] now?
           
           ans: the minimum value before the price[i] 
+          
            so we maintain the minimum sofar as we traverse the prices 
             maximizing the profit.
            
