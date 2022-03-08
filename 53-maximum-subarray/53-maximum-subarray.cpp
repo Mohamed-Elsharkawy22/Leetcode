@@ -8,7 +8,7 @@ public:
 		pfx[i] = pfx[i - 1] + nums[i-1];  // compute the prefix sum at each element
 	}
 
-	long long max_subarray_sum =-100004 ;
+	long long max_subarray_sum =pfx[1] ;
 	long long min_prefix_sum = 0;
 	for (int i = 1; i <= n; i++) {
 		// Max subarray sum is the maximum difference between two prefix sums
