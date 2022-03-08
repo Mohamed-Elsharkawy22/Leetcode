@@ -4,26 +4,18 @@ public:
         
         int mxProfit=0;
         const int n=prices.size();
-        vector<int>mx(n,0),mn(n,0);
-    int mnSoFar=100005;
-    for(int i=0;i<n;i++){
-       mn[i]=min(mnSoFar, prices[i]);
+        /// mxProfit= (prices[i]-price[j]) ; (i > j) 
+        /// to maximize the profit we must minimize the price[j] and maximize the price[i]
+        /// price[i] must be a value from prices, so we try all possible values as we traverse
+       /// maintaing the mnSoFar (price[j]) before the current price[i]
         
-        mnSoFar=min(mnSoFar,prices[i]);
+    int mnSoFar=100005; 
+    for(int i=0;i<n;i++){ 
+        mnSoFar=min(mnSoFar, prices[i]);
+        mxProfit=max(mxProfit, prices[i]-mnSoFar);
     }
         
-        int mxSoFar=0;
-    for(int i=n-1;i>=0;i--){
-       mx[i]=max(mxSoFar, prices[i]);
         
-        mxSoFar=max(mxSoFar,prices[i]);
-    }
-    
-        for(int i=0;i<n;i++){
-           // cout<<mn[i]<<" "<<mx[i]<<endl;
-            mxProfit=max(mxProfit,mx[i]-mn[i]);
-            
-        }
         
         return mxProfit;
     }
