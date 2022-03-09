@@ -12,9 +12,9 @@ class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         
-        ListNode* sortedList = new ListNode();
+        ListNode* uniqueList = new ListNode();
         
-         ListNode* ptr = sortedList ;
+         ListNode* ptr = uniqueList;
         
         while(head){
             
@@ -38,9 +38,7 @@ public:
              
         }
         
-       
-        
-        return sortedList->next;
+        return uniqueList->next;
         
         
     }
