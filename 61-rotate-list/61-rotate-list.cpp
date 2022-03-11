@@ -18,7 +18,7 @@ public:
         ListNode* ptr=head,
         *tail =NULL,
         *ans=NULL;
-        ;
+       
         
         while(ptr){
             sz++;
@@ -28,13 +28,14 @@ public:
         }
         
         k=k%sz;
+        
         if(!k){
             return head;
         }
+        
         int iter=sz-k-1;
         ptr=head;
         
-       
         while(iter--){
             ptr=ptr->next;
         }
