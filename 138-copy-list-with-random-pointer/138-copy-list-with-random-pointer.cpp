@@ -16,6 +16,7 @@ public:
 
 class Solution {
 public:
+    // o(n) time,  o(n) space
     Node* copyRandomList(Node* head) {
         unordered_map<Node*, Node*>clone;
         
