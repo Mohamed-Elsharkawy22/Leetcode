@@ -22,7 +22,7 @@ public:
                     
         }
         if(best<0) return best; //if(all element are -ve return smallest one)
-        
+        // important special case; 
         
            int curSum1=0;
         int best1=-30001;
