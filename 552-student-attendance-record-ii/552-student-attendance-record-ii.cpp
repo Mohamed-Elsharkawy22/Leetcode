@@ -4,12 +4,11 @@ public:
     int dp[100005][2][3];
     
     const int MOD=1e9 + 7;
-    int n1;
-    int count(int i, int a, int l){
+    int count(int i, int a, int l,const int n){
         
         if(a>=2 || l>=3) return 0;
         
-        if(i==n1){
+        if(i==n){
             
             if(a<2 && l<3){
                 return 1;
@@ -23,11 +22,11 @@ public:
         
         ret=0;
         
-        ret = count(i+1,a,0)%MOD;
+        ret = count(i+1,a,0,n)%MOD;
          
-        ret = (ret%MOD + count(i+1,a+1,0)%MOD)%MOD;
+        ret = (ret%MOD + count(i+1,a+1,0,n)%MOD)%MOD;
         
-        ret=(ret%MOD + count(i+1,a,l+1)%MOD)%MOD;
+        ret=(ret%MOD + count(i+1,a,l+1,n)%MOD)%MOD;
         
         return ret;
         
@@ -37,7 +36,8 @@ public:
     
     int checkRecord(int n) {
         memset(dp,-1,sizeof dp);
-        n1=n;
-        return count(0,0,0);
+        
+        return count(0,0,0,n);
+        
     }
 };
