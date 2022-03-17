@@ -4,7 +4,7 @@ public:
     
           /*
           every (), its cost is 2^(number of not closed yet).
-          so, if i found (), i add its cost;
+          so, if i find (), i add its cost;
           */
         int ans=0,
         numberOfNotClosedYet=0;
