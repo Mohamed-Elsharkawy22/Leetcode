@@ -1,27 +1,29 @@
 class Solution {
 public:
     int scoreOfParentheses(string s) {
-    
-          /*
-          every (), its cost is 2^(number of not closed yet).
-          so, if i find (), i add its cost;
-          */
-        int ans=0,
-        numberOfNotClosedYet=0;
-        for(int i=0;i<s.size();i++){
+     
+        int numberOfNotClosed=0;
+        const int n=s.size();
+        int ans=0;
+        for(int i=0;i<n;i++){
             
-            if(s[i]=='('){
-                numberOfNotClosedYet++;
-             
-            }else{
-                numberOfNotClosedYet--;
+            if(s[i]=='(')
+                numberOfNotClosed++;
+            else{
+                numberOfNotClosed--;
                 
-             if(s[i-1]=='(')ans+= 1<<numberOfNotClosedYet; 
+                if(s[i-1]=='(')
+                    ans+= 1<<numberOfNotClosed;
                 
-            }
-        }       
+            }   
+        }
         
-       return ans; 
+        return ans;
+        
+        
+        
+        
     }
 };
+
 
