@@ -19,18 +19,15 @@ public:
             
         }
         
-        int minAns=INT_MAX, best=INT_MAX;
+        int minAns=INT_MAX;
         
         for(int i=1;i<=6;i++){
             if(top[i]+bottom[i]-topAndBottom[i] == n){
-                minAns = n-max(top[i], bottom[i]);
+                minAns =min(minAns, n-max(top[i], bottom[i]));
             }
-            
-            best=min(best, minAns);
         }
         
-        
-        return (best!=INT_MAX)?best:-1;
+        return (minAns!=INT_MAX)?minAns:-1;
         
     }
 };
