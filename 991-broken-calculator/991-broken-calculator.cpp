@@ -10,10 +10,10 @@ public:
         // if even we have to div by 2 only why?
         // we wanna minimize en to reach st
         // en is even, if we add 1, en will be odd
-        // so we have to add again 1 then mul by 2 to minimize
-        // (en +2) /2 ---> 3operations
-        // but it is the same as (en/2)+1 by this in 2 operations
-        // only so if it is even we must div by 2 only
+        // so we have to add again 1 then div by 2 to minimize en
+        // (en +2) /2 ---> 3 operations
+        // but this is the same as (en/2)+1 by this in 2 operations only,
+        // so if it is even we must div by 2 only for less operations
         
         int ans=0;
         while(target > startValue){
