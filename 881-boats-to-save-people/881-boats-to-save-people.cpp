@@ -12,20 +12,13 @@ public:
         int cnt=2;
         while(!s.empty()){
             
-            while(cnt &&lim  && !s.empty() ){
+            while(cnt &&lim&& !s.empty() ){
                 
-               //cout<<s.size()<<" "<<lim<<endl;
+               
                 
              std:: multiset<int>::iterator it = s.lower_bound(lim);
                 
-                //for(int v:s){
-                  //  cout<<"iam set "<<v<<endl;
-                    
-                //}
-               //cout<<"ii "<<*it<<endl;
-                
                 if(it != s.end() && *it <= lim){
-                 //   cout<<"hi 1\n";
                     lim -= *it;
                     s.erase(it);
                     cnt--;
@@ -33,10 +26,7 @@ public:
                 }else{
                     if(it==s.begin()) break;
                     --it;
-                   // cout<<"in 2"<<*it<<endl;
                     if(*it <= lim ){ 
-                    //cout<<"hi 2\n";
-                    
                     lim -= *(it);
                     s.erase((it));  
                         cnt--;
