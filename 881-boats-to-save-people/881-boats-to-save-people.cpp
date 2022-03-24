@@ -13,9 +13,6 @@ public:
         while(!s.empty()){
             
             while(cnt &&lim&& !s.empty() ){
-                
-               
-                
              std:: multiset<int>::iterator it = s.lower_bound(lim);
                 
                 if(it != s.end() && *it <= lim){
@@ -31,7 +28,7 @@ public:
                     s.erase((it));  
                         cnt--;
                 }
-                    ++it;
+                   // ++it;
                 }
                 
             }
