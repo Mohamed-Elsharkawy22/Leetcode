@@ -1,27 +1,54 @@
 class Solution {
 public:
     int numRescueBoats(vector<int>& people, int limit) {
+        multiset<int>s;
         
-        
-        sort(people.begin(), people.end());
-        
-        int left=0;
-        int right=people.size()-1;
+        for(int i=0;i<people.size();i++){
+            s.insert(people[i]);            
+        }
         
         int ans=0;
-        while(left <= right){
+        int lim=limit;
+        int cnt=2;
+        
+        while(!s.empty()){
             
-            if(people[left]+people[right]<=limit){
-                left++;
-                right--;
-            }else{
-                right--;
+            while(cnt &&lim&& !s.empty() ){
+             std:: multiset<int>::iterator it = s.lower_bound(lim);
+                
+                if(it != s.end() && *it == lim){
+                    lim -= *it;
+                    s.erase(it);
+                    cnt--;
+                    
+                }else{
+                    
+                    if(it==s.begin()) break;// lim is not sufficient so get another boat
+                    
+                    --it;
+                    
+                    if(*it <= lim ){ 
+                    lim -= *(it);
+                    s.erase((it));  
+                        cnt--;
+                     }                    
+                }
+                
             }
-            
+            lim=limit;
             ans++;
+            cnt=2;
+            
+            
         }
         
         return ans;
         
+        
+        
     }
 };
+
+
+
+
