@@ -1,30 +1,33 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        
-       const int n=nums.size();
-        // tails[i] is the smallest t in all incresing subsequences of length i+1
+        const int n=nums.size();
         int tails[n];
-        int maxLen=0;
-        
-        for(int num: nums){
-          
-        // binary search to find the leftmost t where num < t (num tst7q mkano in tails)      
+        int mxLen=0;
+        for(int i=0;i<n;i++){
+            
+            // binary search to find lefmost t 
+            // where  t >= nums[i];
             int lo=0;
-            int hi=maxLen;
+            int hi=mxLen;
+            
             while(lo < hi){
-                int mid = lo+(hi-lo)/2;
-                if(num > tails[mid])
-                    lo=mid+1;
-                else{
+                int mid=lo+(hi-lo)/2;
+                
+                if(tails[mid] >= nums[i]){
                     hi=mid;
+                }else{
+                   lo=mid+1;
                 }
+            
             }
-    
-            tails[hi] = num;
-            if(hi== maxLen) maxLen++;
+            
+          tails[lo]=nums[i];
+            if(lo==mxLen)
+                mxLen++;
         }
-    
-        return maxLen;
+        
+        return mxLen;
+        
     }
 };
