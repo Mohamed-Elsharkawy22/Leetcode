@@ -4,9 +4,8 @@ public:
         // greedly maintain the max height for the next comparing
         // because we need the max area
         
-        int i=0,
-        j = height.size()-1;
-        
+        int i=0;
+        int j = height.size()-1;
         int mx=0;
         while(i<j){
             mx=max(mx, (j-i)*min(height[i],height[j]) );
