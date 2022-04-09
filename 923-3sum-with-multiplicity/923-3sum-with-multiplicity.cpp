@@ -16,7 +16,7 @@ public:
                 
                 count[arr[j]]++;
             }
-            count.assign(305,0);
+            count.assign(301,0);
         }
         
         return ans;
