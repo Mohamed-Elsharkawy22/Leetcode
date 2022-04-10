@@ -7,7 +7,7 @@ public:
             }
             nums[abs(nums[i])] *=-1;
         }
-     
+     /// dont forget to restore them again.
         return 0;
     }
 };
