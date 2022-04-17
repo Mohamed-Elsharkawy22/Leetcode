@@ -22,7 +22,7 @@ public:
             }
             
             
-            if(nums[mid] <= nums[hi]){
+            if(nums[mid] < nums[hi]){
                 //[mid......hi] is ordered
                 if(nums[mid] < target && target <= nums[hi])
                     lo=mid+1;
