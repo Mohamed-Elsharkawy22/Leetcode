@@ -13,7 +13,10 @@ public:
             if(nums[mid] == target)
                 return mid;
         
-            if(nums[mid] >= nums[lo] ){
+            if(nums[mid] >= nums[lo] ){   
+                //n7t = hena 2w t7t 3lshan if arr contains one element and not equal target
+                //3lashan myd7`lsh infinite loop
+                
                 //[lo-------mid] is ordered;
                 if(nums[mid] > target && target >= nums[lo])
                     hi=mid-1;
