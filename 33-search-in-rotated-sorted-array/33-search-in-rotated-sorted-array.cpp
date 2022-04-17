@@ -22,10 +22,8 @@ public:
                     hi=mid-1;
                 else
                     lo=mid+1;   
-            }
             
-            
-            if(nums[mid] < nums[hi]){
+            }else if(nums[mid] < nums[lo]){ //if(nums[mid] < nums[hi]) w nshel else
                 //[mid......hi] is ordered
                 if(nums[mid] < target && target <= nums[hi])
                     lo=mid+1;
