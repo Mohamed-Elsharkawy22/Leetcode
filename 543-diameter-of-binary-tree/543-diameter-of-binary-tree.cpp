@@ -11,26 +11,26 @@
  */
 class Solution {
 public:
- 
     int diameterOfBinaryTree(TreeNode* root) {
-         int ans=0;
-    int dummyMxDepth = mxDepth(root, ans);
+        int ans=0;
         
+        int mx=mxDepth(root, ans);
         
-        return ans;
+    return ans;
     }
     
     int mxDepth(TreeNode* root, int &sum){
+        
         if(root ==NULL) return 0;
         
-        int left = mxDepth(root->left, sum);
-        int right = mxDepth(root->right, sum);
+        int lf= mxDepth(root->left,sum);
+        int rt= mxDepth(root->right,sum);
         
-         sum = max(sum, left+right);
+        sum = max(sum, lf+rt );
+        return max(lf,rt)+1;
         
-        return max(left,right)+1;
     }
     
     
-   
+    
 };
