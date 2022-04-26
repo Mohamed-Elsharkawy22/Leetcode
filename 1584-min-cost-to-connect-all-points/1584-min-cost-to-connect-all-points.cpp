@@ -47,7 +47,7 @@ class Solution {
 public:
     
     int minCostConnectPoints(vector<vector<int>>& points) {
-        const int n =points.size(); 
+        const int n = points.size(); 
         vector<edge>edges;
         
         for(int i=0;i<n;i++){
@@ -71,7 +71,7 @@ public:
   
      int kruskal(vector<edge> &edges, const int &n){
          int mst=0;
-         DSU dsu(n+1);
+         DSU dsu(n);
     
          for(int i=0;i<edges.size();i++){
              if(dsu.join(edges[i].from, edges[i].to)){
