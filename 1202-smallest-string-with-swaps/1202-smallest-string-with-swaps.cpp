@@ -1,3 +1,5 @@
+//In C++ sort() function provided by STL is a hybrid of Quick Sort, Heap Sort, and Insertion Sort //and has a worst-case ((space)) complexity of O(logV).
+
 class DSU{
     public:
     vector<int>par,sz;
@@ -52,7 +54,6 @@ public:
         }
        
         for(auto &component: mp){
-            
             vector<char>chars;
             
             for(int i=0;i<component.size();i++)
