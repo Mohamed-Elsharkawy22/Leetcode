@@ -4,9 +4,10 @@ public:
         const int n=graph.size();
         int ans=1;
         vector<int>vis(n,-1);
-    
+         
         for(int i= 0 ;i<n;i++)
-            vis[i]==-1?vis[i]=1:1,isBipartite(i,vis,graph,ans);
+            if(vis[i]==-1)
+                vis[i]=1,isBipartite(i,vis,graph,ans);
         
         return ans;
     }
