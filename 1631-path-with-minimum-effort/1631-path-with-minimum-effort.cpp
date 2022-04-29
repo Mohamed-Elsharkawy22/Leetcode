@@ -47,7 +47,8 @@ public:
             
         }
         
-        
+        /// is it always reach the sol? if not we should include 
+        // that if the cost inf we return 0;
         
         return cost[n-1][m-1];
         
