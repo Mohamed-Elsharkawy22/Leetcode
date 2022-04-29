@@ -14,21 +14,20 @@ public:
 
     void isBipartite(int node, vector<int> &vis,vector<vector<int>>& graph, int &ans){
         
-        if(!ans) return ;
+        if(!ans) return;
         
         for(int v: graph[node]){
-            
-            if(vis[v] == -1){
+            if(vis[v]==-1){
                 vis[v] = vis[node]^1;
-                ans &= vis[node] != vis[v]; 
-                isBipartite(v, vis, graph,ans);
+                ans &= vis[v]!=vis[node];
+                isBipartite(v, vis, graph, ans);
             }else{
-              ans &= vis[node] != vis[v];  
+                // lw node leha more than one parent, then will be painted by one of them
+                // and check for this here
+               ans &= vis[v]!=vis[node]; 
             }
             
-           
         }
-     
     }
     
     
