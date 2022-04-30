@@ -41,17 +41,12 @@ public:
         }
         
         for(int i=0;i<queries.size();i++){
-            
-            if(mp.count(queries[i][0])==0 || mp.count(queries[i][1])==0 )
+             int n1=mp[queries[i][0]];
+                int n2=mp[queries[i][1]];
+            if(mp.count(queries[i][0])==0 || mp.count(queries[i][1])==0 ||cost[n1][n2]>= 1000.0 )
                 ans.push_back(-1.0);
             else{
-                int n1=mp[queries[i][0]];
-                int n2=mp[queries[i][1]];
-                if(cost[n1][n2]>= 1000.0){
-                    ans.push_back( -1);
-                    continue;
-                }
-                    
+                   
                 ans.push_back( cost[n1][n2]);
             }
         }
