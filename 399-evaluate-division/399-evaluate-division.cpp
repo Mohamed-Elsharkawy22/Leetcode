@@ -32,7 +32,9 @@ public:
         for(int k=1;k<=mp.size();k++){ //floyed warshall
             for(int i=1;i<=mp.size();i++){
                 for(int j=1;j<=mp.size();j++){
-                    cost[i][j]=min(cost[i][j], cost[i][k]*cost[k][j]);
+                    
+                    if(cost[i][k] < 1.0*INT_MAX && cost[k][j]< 1.0*INT_MAX)                 
+                       cost[i][j]=min(cost[i][j], cost[i][k]*cost[k][j]);
                 }
             }
         }
@@ -41,7 +43,7 @@ public:
              int n1=mp[queries[i][0]];
              int n2=mp[queries[i][1]];
             
-            if(mp.count(queries[i][0])== 0 || mp.count(queries[i][1])==0 || cost[n1][n2]>= 500.0 )
+            if(mp.count(queries[i][0])== 0 || mp.count(queries[i][1])==0 || cost[n1][n2]== 1.0*INT_MAX )
                 ans.push_back(-1.0);
             else{
                 ans.push_back(cost[n1][n2]);
