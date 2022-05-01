@@ -19,7 +19,7 @@ public:
             st.pop();
         }
         
-        cout<<ans<<" ";
+        
         return ans;
     }
     
