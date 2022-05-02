@@ -2,23 +2,23 @@ class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {
         
-         int n=nums.size();
-        for(int i=0;i<n;i++){
+        const int n=nums.size();
+        int i=0, j=n-1;
+        
+           while(i<j){
             
-            if(nums[i]%2!=0)
-            {
-                nums.push_back(nums[i]);
-                nums[i]=-1;
+            if(nums[i]% 2 > nums[j]%2){
+                swap(nums[i],nums[j]);
             }
             
+             if(nums[i]%2==0) i++;
+               
+             if(nums[j]%2!=0) j--;  
+               
         }
-        vector<int>ans;
-        n=nums.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]!= -1) ans.push_back(nums[i]);
-        }
-        
-        return ans;
+       
+        return nums;
         
     }
 };
+
