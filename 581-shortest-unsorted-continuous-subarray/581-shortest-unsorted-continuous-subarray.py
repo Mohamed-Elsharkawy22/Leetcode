@@ -5,8 +5,8 @@ class Solution:
         first = len(nums)
         for i in range(len(nums)):
             while stack != [] and nums[stack[-1]] > nums[i]:
-                first = min(first, stack[-1])
-                del stack[-1]
+                first = min(first, stack.pop())
+               
               
             stack.append(i)    
             
@@ -16,8 +16,8 @@ class Solution:
         last=-1
         for i in range(len(nums)-1,-1,-1):
             while (stack and nums[stack[-1]] < nums[i]):
-                last=max(last, stack[-1])
-                stack.pop()
+                last=max(last, stack.pop())
+                
             stack.append(i)
             
        
