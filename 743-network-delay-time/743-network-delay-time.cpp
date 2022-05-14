@@ -1,22 +1,21 @@
 class Solution {
 public:
     
-    vector<pair<int,int>>adj[105];
+   
     
     
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
       vector<int>cost(n+1,(int)1e5);
         const int nn=times.size();
+         vector<pair<int,int>>adj[n+1];
         for(int i=0;i<nn;i++){
             adj[times[i][0]].push_back({times[i][1],times[i][2]});
         }
-        
         
         priority_queue<pair<int,int>>pq;
         pq.push({0,k});
         cost[k]=0;
         while(!pq.empty()){
-            
             int u= pq.top().second;
             int c= -pq.top().first;
             pq.pop();
