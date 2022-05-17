@@ -14,20 +14,19 @@ public:
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
        TreeNode *ans = NULL;
         dfs(original, cloned, target,ans);
-
         return ans;
     }
     
-    void dfs(TreeNode* original, TreeNode* cloned, TreeNode* target, TreeNode* &ans){
+    void dfs(TreeNode* original, TreeNode* cloned, TreeNode* target, TreeNode*&ans){
         
         if(original ==NULL)
             return;
         
         dfs(original->left, cloned->left, target,ans);
         
-        if(original == target)
-        {ans = cloned;
-        return;
+        if(original == target){
+             ans = cloned;
+           return;
         }
          dfs(original->right, cloned->right, target,ans);
     }
