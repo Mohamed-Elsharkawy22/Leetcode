@@ -5,7 +5,8 @@ public:
         
     const int n=s.size();
         vector<vector<int>>dp(n,vector<int>(n,0));
-    string ret;
+        int begin=0,end=0;
+   // string ret;
         int cnt=0;
         int ans=0;
         for(int len=1;len<=n;len++){
@@ -25,13 +26,16 @@ public:
                  if(dp[st][en]){
                      if(ans<len){
                          ans=len;
-                     ret= s.substr(st,len);
+                   //  ret= s.substr(st,len); 
+                       begin=st;
+                         end=en;
+                         
                      }
                  }  
                     
             }}
                  
-         return ret;    
+         return s.substr(begin, end-begin+1 );    
 }
 
 };
