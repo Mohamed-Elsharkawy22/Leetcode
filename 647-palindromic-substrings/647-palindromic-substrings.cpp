@@ -1,37 +1,29 @@
+
 class Solution {
 public:
     int countSubstrings(string s) {
+   
+        int count=0; 
         
-    const int n=s.size();
-        vector<vector<int>>dp(n,vector<int>(n,0));
+        for(int i=0;i<s.size();i++){
+            expandAroundCenter(s,i,i,count);
+            expandAroundCenter(s,i,i+1,count);
+
+        }
+        
+    return count;
+    }
     
-        int cnt=0;
-        for(int len=1;len<=n;len++){
-            
-            for(int st=0;st<n-len+1;st++){
-                int en = st+len-1;
-                
-                if(s[st]==s[en])
-                {    
-                    if(st==en || st+1 == en){
-                        dp[st][en]=1;
-                    }else{
-                        dp[st][en]=dp[st+1][en-1];
-                    }
-                    
-                        
-                }
-                
-                
-                 if(dp[st][en])cnt++;  
-                    
-            }}
-                 
-                
-            
-         return cnt;
+    void expandAroundCenter(string &s,int left, int right, int &count){
+        int l=left,r=right;
+        
+        while(l>=0 && r<s.size() && s[l]==s[r]){
+            count++;
+        l--;
+        r++;    
+        }
+    }
     
     
     
-            }  
 };
