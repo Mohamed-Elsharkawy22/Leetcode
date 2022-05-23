@@ -1,41 +1,34 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
-
-        
-    const int n=s.size();
-        vector<vector<int>>dp(n,vector<int>(n,0));
-        int begin=0,end=0;
-   // string ret;
-        int cnt=0;
-        int ans=0;
-        for(int len=1;len<=n;len++){
+     int ans=0;
+        int st=0,en=0;
+        for(int i=0;i<s.size();i++){
+          int len1=expandAroundCenter(s,i,i);
+           int len2= expandAroundCenter(s,i,i+1);
+            int len=max(len1,len2);
             
-            for(int st=0;st<n-len+1;st++){
-                int en = st+len-1;
-                
-                if(s[st]==s[en])
-                {    
-                    if(st==en || st+1 == en){
-                        dp[st][en]=1;
-                    }else{
-                        dp[st][en]=dp[st+1][en-1];
-                    }
-                }
-                
-                 if(dp[st][en]){
-                     if(ans<len){
-                         ans=len;
-                   //  ret= s.substr(st,len); 
-                       begin=st;
-                         end=en;
-                         
-                     }
-                 }  
-                    
-            }}
-                 
-         return s.substr(begin, end-begin+1 );    
+            if(len>ans){
+                ans=len;
+                st=i- (len-1)/2;
+                en= i+(len/2);
+            }
+            
+        }
+        
+      return s.substr(st,en-st+1);  
 }
+    
+    int expandAroundCenter(string &s, int Left, int Right){
+            int l=Left, r=Right;
+            
+            while(l>=0 && r<s.size()&& s[l]==s[r]){
+                l--;
+                r++;
+            }
+         /// stbbben and the actual string is bbb so len = r-l-1
+            return r - l - 1 ;
+        }
+    
 
 };
