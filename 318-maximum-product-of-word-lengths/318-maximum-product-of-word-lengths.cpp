@@ -1,7 +1,7 @@
 class Solution {
 public: 
     
-    // o(n*(k+n))  space o(1)
+    // o(n*(k+n))  space o(n)
     int maxProduct(vector<string>& words) {
         
         const int n=words.size();
