@@ -4,10 +4,13 @@ public:
         int numAll= 1<<k;
         const int n= (int)s.size();
         if(n<k) return 0;
-        set<string>treeSet;
-        for(int i=0;i<n-k+1;i++){
-            string  sub = s.substr(i,k);
-            treeSet.insert(sub);
+        set<int>treeSet;
+        int mask=0;
+        int all=(1<<k)-1; // k ones
+        for(int i=0;i<n;i++){
+            mask = ((mask<<1) & all) | (s[i]-'0');
+            if(i>=k-1)
+                treeSet.insert(mask);
         }
         
         return treeSet.size()==(1<<k);
