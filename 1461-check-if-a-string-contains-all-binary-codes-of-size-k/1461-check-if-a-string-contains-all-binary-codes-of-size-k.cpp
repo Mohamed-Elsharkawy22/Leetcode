@@ -7,7 +7,7 @@ public:
         set<string>treeSet;
         for(int i=0;i<n-k+1;i++){
             string  sub = s.substr(i,k);
-           treeSet.insert(sub);
+            treeSet.insert(sub);
         }
         
         return treeSet.size()==(1<<k);
