@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        int numAll= 1<<k;
         const int n= (int)s.size();
         if(n<k) return 0;
         set<int>treeSet;
