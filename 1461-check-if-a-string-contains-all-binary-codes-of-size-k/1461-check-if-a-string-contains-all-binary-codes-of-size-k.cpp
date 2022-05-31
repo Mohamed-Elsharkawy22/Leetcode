@@ -3,7 +3,7 @@ public:
     bool hasAllCodes(string s, int k) {
         const int n= (int)s.size();
         if(n<k) return 0;
-        set<int>treeSet;
+        unordered_set<int>treeSet;
         int mask=0;
         int all=(1<<k)-1; // k ones
         for(int i=0;i<n;i++){
