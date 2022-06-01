@@ -1,27 +1,19 @@
 class Solution {
 public:
     int longestSubsequence(vector<int>& arr, int difference) {
+        unordered_map<int,int>mp;
+        int ans=0;
+        const int n=arr.size();
         
-        int n = arr.size();
-        unordered_map<int,int>dp;
-    // for(int i=0;i<n;i++)
-    // dp[arr[i]]=1; // wrong we need the previous values before arr[i] and this may give be next values        
-        
-	int ans=0;
-        
-	for(int i=0;i<n;i++){
-		if(dp.count(arr[i]-difference)){// count doesnt create a  copy in the map
+        for(int i=0;i<n;i++){
+            if(mp.count(arr[i]-difference) > 0){
+                mp[arr[i]]=mp[arr[i]-difference]+1;
+            }else{
+                mp[arr[i]]=1;
+            }
             
-		  dp[arr[i]] = dp[arr[i]-difference]+1;
-            
-		}else{
-            dp[arr[i]]=1;
+            ans=max(mp[arr[i]], ans);
         }
-		ans=max(ans, dp[arr[i]]);
-
-	}
-       
-	return ans;
-        
+        return ans;
     }
 };
