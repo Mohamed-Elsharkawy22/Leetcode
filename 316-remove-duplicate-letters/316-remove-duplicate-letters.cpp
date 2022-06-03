@@ -1,38 +1,33 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-      
-        vector<int>counts(26,0);
-        vector<int>visited(26,0);
+        
+        vector<int>vis(26,0);
+        vector<int>freq(26,0);
         
         const int n=s.size();
+        for(int i=0;i<n;i++)
+            freq[s[i]-'a']++;
         
         string ans="";
-        
-        for(int i=0;i<n;i++)
-            counts[s[i]-'a']++;
-        
-        
-        
         for(int i=0;i<n;i++){
             
-            counts[s[i]-'a']--;
+            freq[s[i]-'a']--;
             
-            if(!visited[s[i]-'a']){
-                while(ans.size()>0 && counts[ans.back()-'a'] > 0 && ans.back() > s[i]){            
-                  visited[ans.back()-'a']=0;  
+            if(!vis[s[i]-'a']){
+                
+                while(ans.size()>0 && freq[ans.back()-'a']>0 && ans.back() > s[i])
+                {
+                    vis[ans.back()-'a']=0;
                     ans.pop_back();
                 }
-            
-                visited[s[i]-'a']=1;
+                
+                vis[s[i]-'a']=1;
                 ans.push_back(s[i]);
                 
             }
             
         }
-            
-         return ans;   
-               
-        
+        return ans;
     }
 };
