@@ -11,7 +11,7 @@ public:
     }
     
     
-    void permute(const int n,int row, vector<vector<string> >&ans,vector<string>&board, int cols,int dig1, int dig2){
+    void permute(const int n,int row, vector<vector<string> >&ans,vector<string>&board, int &cols,int &dig1, int &dig2){
         
         if(row==n){
             ans.push_back(board);
