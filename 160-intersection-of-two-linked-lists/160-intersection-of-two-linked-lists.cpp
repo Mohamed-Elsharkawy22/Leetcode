@@ -10,22 +10,32 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
-        set<ListNode *> seen;
+        
         
         ListNode * ptr1=headA;
         
-        while(ptr1!= NULL){
-            seen.insert(ptr1);
-            ptr1=ptr1->next;
+        ListNode * ptr2=headB;
+        
+        
+        while(ptr1!= NULL || ptr2 !=NULL ){
+           
+            
+            if(ptr1==NULL)
+                ptr1=headB;
+            
+            if(ptr2==NULL)
+                ptr2=headA;
+            
+            
+            if(ptr1==ptr2)
+                return ptr1;
+            
+            
+            
+             ptr1=ptr1->next;
+             ptr2=ptr2->next;
         }
         
-        ptr1=headB;
-         while(ptr1!= NULL){
-            if(seen.find(ptr1)!=seen.end()){
-                return ptr1;
-            }
-            ptr1=ptr1->next;
-        }
         
         
         return NULL;
