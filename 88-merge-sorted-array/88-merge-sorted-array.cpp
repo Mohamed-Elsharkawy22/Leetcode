@@ -11,27 +11,23 @@ public:
             return;
         }
         
-        int i=0, j=0;
-        vector<int>ans;
-        while(i<m && j < n){
-            if(  nums1[i] <= nums2[j]){
-                ans.push_back(nums1[i]);
-                i++;
+        int i=m-1, j=n-1;
+        int a=m+n-1;
+        while(i>=0 && j >=0){
+            if(  nums1[i] > nums2[j]){
+                nums1[a--]=nums1[i--];
+                
             }else{
-                ans.push_back(nums2[j]);
-                j++;
+                nums1[a--]=nums2[j--];
+                
             }
              
         }
-        while(i<m){
-            ans.push_back(nums1[i]);
-                i++;
+       
+        while(j>=0){
+             nums1[a--]=nums2[j--];
         }
-        while(j<n){
-             ans.push_back(nums2[j]);
-                j++;
-        }
-        nums1=ans;
+        
     }
 };
 
