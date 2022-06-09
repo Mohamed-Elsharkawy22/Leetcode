@@ -3,28 +3,20 @@ public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         
         const int n=numbers.size();
-        int st=0,en=n;
+        int st=0,en=n-1;
         
-        for(int i=0;i<n;i++){
-              st=i+1, en=n-1;
-            while(st<=en){
-                int md=st+(en-st)/2;
-                
-                if(target-numbers[i]==numbers[md]){
-                    return vector<int>{i+1, md+1};
-                }else if(target-numbers[i] > numbers[md]){
-                    st=md+1;
-                }else{
-                    en=md-1;
-                }
+        while(st<en){
+            
+            if(numbers[st]+numbers[en]==target){
+                return vector<int>{st+1,en+1};
+            }else if(numbers[st]+numbers[en] > target){
+                en--;
+            }else{
+                st++;
             }
-            
-            
-            
             
         }
         
         return vector<int>();
-        
     }
 };
