@@ -9,14 +9,13 @@ public:
             if(in.find(s[i])==in.end()){
                 in.insert(s[i]);
             }else{
-                
                while(in.find(s[i])!=in.end()){
                    in.erase(s[st]);
                    st++;
                }
                 in.insert(s[i]);
             }
-            ans=max(ans, i-st+1);
+            ans=max(ans,(int) in.size());
         }
         
         return ans;
