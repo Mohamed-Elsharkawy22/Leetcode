@@ -2,20 +2,17 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         
-      unordered_set<char>in;
-        int st=0;
         int ans=0;
-        for(int i=0;i<s.size();i++){
-            if(in.find(s[i])==in.end()){
-                in.insert(s[i]);
-            }else{
-               while(in.find(s[i])!=in.end()){
-                   in.erase(s[st]);
-                   st++;
-               }
-                in.insert(s[i]);
-            }
-            ans=max(ans,(int) in.size());
+        const int n=s.size();
+        unordered_set<char> lookup;
+        int start=0;
+        for(int i=0;i<n;i++){
+            
+           while(lookup.find(s[i]) != lookup.end()){
+               lookup.erase(s[start++]);
+           } 
+           lookup.insert(s[i]);
+            ans=max(ans,(int)lookup.size());
         }
         
         return ans;
