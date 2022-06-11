@@ -18,13 +18,14 @@ public:
         int cum=0;
         int longest=-1;
         while( slow<nums.size()){
-            
             while(fast<nums.size()  && cum < target ){
                 cum += nums[fast];
                 fast++;
             }
             
-         if(cum == target)   longest=max(longest, fast-slow);
+         if(cum == target)   
+             longest=max(longest, fast-slow);
+            
             cum-= nums[slow];
             slow++;
         }
