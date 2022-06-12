@@ -4,7 +4,7 @@ public:
         
         const int n=nums.size();
         
-        set<int>lookup;
+        unordered_set<int>lookup;
         int st=0;
 
         int sum=0;
