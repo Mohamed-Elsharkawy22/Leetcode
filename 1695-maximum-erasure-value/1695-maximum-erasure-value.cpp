@@ -1,25 +1,27 @@
 class Solution {
 public:
+    
+    int lookup[10001];
     int maximumUniqueSubarray(vector<int>& nums) {
         
         const int n=nums.size();
+        memset(lookup,0,sizeof lookup);
         
-        unordered_set<int>lookup;
         int st=0;
 
         int sum=0;
         int ans=-1;
         for(int i=0;i<n;i++)
         {
-            while(lookup.find(nums[i])!=lookup.end()){
-                lookup.erase(nums[st]);
+            while(lookup[nums[i]] > 0){
+                lookup[nums[st]]--;
                 sum -= nums[st];
                 st++;
                 
             }
             
             sum += nums[i];
-            lookup.insert(nums[i]);
+            lookup[nums[i]]++;
             ans=max(ans, sum);
             
         }        
