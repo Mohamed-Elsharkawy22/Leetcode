@@ -22,7 +22,7 @@ public:
     }
     
     
-    int expandAroundCenter(string s, int left ,int right){
+    int expandAroundCenter(string &s, int left ,int right){
         
         int l=left, r=right;
         
