@@ -12,18 +12,19 @@ public:
         priority_queue<int>pq;
         
         int day=0;
+        int cnt=0;
         
           for(int i=0;i<n;i++){        
             
               if(day+courses[i][0] <= courses[i][1]){
                   
                   pq.push(courses[i][0]);
-                  
                   day += courses[i][0];
+                  cnt++;
                   
               }else{
                   if(pq.empty() || courses[i][0] >= pq.top()) continue;
-                  
+                
                   day -= pq.top();
                   pq.pop();
                   
@@ -35,7 +36,7 @@ public:
     
         
         
-        return pq.size();
+        return cnt;
     }
     
     
