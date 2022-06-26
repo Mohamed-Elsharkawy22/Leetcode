@@ -9,7 +9,7 @@ public:
         int kk=n-k;
         for(int i=1;i<=n;i++){
             prefix[i] = cardPoints[i-1]+ prefix[i-1];
-            cout<<prefix[i]<<" ";
+           
             if(i>=kk)
              mn=min(mn, prefix[i]-prefix[i-kk]);
         }
