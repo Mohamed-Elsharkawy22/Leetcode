@@ -3,14 +3,13 @@ public:
     
     bool isPalin(string &s, int st, int en){
         
-        while(st<=en && s[st]==s[en]){
-            
+        while(st<=en){
+            if(s[st]!=s[en]) return 0;
             st++;
             en--;
         }
-        if(en<=st) return 1;
-        
-        return 0;
+                
+        return 1;
     }
     
     
@@ -20,21 +19,15 @@ public:
         
      const int n=s.size();
         
-        int cnt=0;
+       
         while(pt1<=pt2){
             
-          
-            
-            if(s[pt1]==s[pt2]){
-                pt1++;
-                pt2--;
-            }else{
-                cnt++;
-                if(cnt>1)
-                    return 0;
-              
+            if(s[pt1]!=s[pt2]){            
                 return (isPalin(s,pt1+1,pt2) | isPalin(s,pt1,pt2-1));
             }
+             pt1++;
+             pt2--;
+            
         }
         return 1;
     }
