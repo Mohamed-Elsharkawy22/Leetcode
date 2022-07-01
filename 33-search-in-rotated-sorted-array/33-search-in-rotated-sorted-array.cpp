@@ -5,10 +5,9 @@ public:
         int lo=0, hi=nums.size()-1;
         
         while(lo<=hi){
-            
             int mid=lo+(hi-lo)/2;
-            
             if(nums[mid] >= nums[0]){
+                
                 if(target >= nums[0]){
                     if(nums[mid]==target)
                         return mid;
