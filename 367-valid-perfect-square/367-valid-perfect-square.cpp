@@ -2,9 +2,20 @@ class Solution {
 public:
     bool isPerfectSquare(int num) {
      
-        for(int i=1;1ll*i*i<=num*1ll ; i++){
-            if(1ll*i*i==num*1ll) return 1;
+        int lo=1,hi=num;
+        while(lo<=hi){
+            int mid= lo+(hi-lo)/2;
+            
+            if(1ll*mid*mid==num*1ll){
+                return true;
+            }else if(1ll*mid*mid> num*1ll){
+                hi=mid-1;
+            }else{
+                lo=mid+1;
+            }
         }
+        
         return 0;
+        
     }
 };
