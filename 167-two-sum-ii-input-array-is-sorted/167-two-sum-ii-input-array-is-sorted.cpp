@@ -2,21 +2,24 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         
-        const int n=numbers.size();
-        int st=0,en=n-1;
         
-        while(st<en){
+        
+        
+        int ptr1=0,ptr2=numbers.size()-1;
+        
+        while(ptr1<ptr2){
             
-            if(numbers[st]+numbers[en]==target){
-                return vector<int>{st+1,en+1};
-            }else if(numbers[st]+numbers[en] > target){
-                en--;
-            }else{
-                st++;
-            }
+            if(numbers[ptr1]+numbers[ptr2] == target)
+                return vector<int>{ptr1+1,ptr2+1};
             
+            else if(numbers[ptr1]+numbers[ptr2] > target)
+                ptr2--;
+            else
+                ptr1++;
         }
         
+        
         return vector<int>();
+        
     }
 };
