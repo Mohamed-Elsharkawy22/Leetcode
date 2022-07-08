@@ -1,20 +1,21 @@
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
-        int s3=INT_MIN;
+       int thirdElement=-1e9-2;
         stack<int>st;
-        const int n=nums.size();
-        for(int i=n-1;i>=0;--i){
-           if(nums[i]<s3) return 1;
-            
-          while(!st.empty() && nums[i] > st.top()){
-              s3=st.top();
-              st.pop();
-          }  
-             
+        for(int i=nums.size()-1;i>=0;i--){
+            if(nums[i]<thirdElement) return 1;
+            while(!st.empty() && nums[i]>st.top()){
+                thirdElement = st.top();
+                st.pop();
+            }
             st.push(nums[i]);
         }
-        
         return 0;
+         
     }
 };
+    
+
+    
+    
