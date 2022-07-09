@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         
-        if(nums1.size() > nums2.size())
+        if(nums1.size() <nums2.size())
             nums1.swap(nums2);
     
         sort(nums2.begin(), nums2.end());
