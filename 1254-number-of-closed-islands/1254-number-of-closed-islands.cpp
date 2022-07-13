@@ -11,6 +11,7 @@ class Solution {
           for(int j=0;j<m;j++){
               if(grid[i][j]==0){
                   q.push({i,j});
+                  grid[i][j]=1;//visited
                   bool isClosed=1;
                   while(!q.empty()){
                       auto top=q.front();
