@@ -12,24 +12,25 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        
-        vector<vector<int>>res;
-        dfs(root,0,res);
-        
-        return res;
+      vector<vector<int>> ans;
+        dfs(root,ans,0);
+        return ans;
     }
     
-    void dfs(TreeNode* root, int level,vector<vector<int>> &res ){
-        if(root == NULL) return;
-       
-        if(level == res.size()){
-            res.push_back({});
-        }
-        res[level].push_back(root->val);
+    void dfs(TreeNode* root, vector<vector<int>>&ans, int height){
+        if(root ==NULL) return;
         
-        dfs(root->left,level+1,res);
-        dfs(root->right, level+1,res);
+        if(ans.size()<=height){
+            ans.push_back(vector<int>());
+        }
+        
+        ans[height].push_back(root->val);
+        
+        dfs(root->left,ans,height+1);
+        dfs(root->right,ans, height+1);
+        
     }
+    
     
     
 };
