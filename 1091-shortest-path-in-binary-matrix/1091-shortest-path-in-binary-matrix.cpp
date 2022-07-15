@@ -1,44 +1,42 @@
 class Solution {
-private:
-         int dx [8] ={0,0,1,-1,1,-1,1,-1};
-         int dy [8] ={1,-1,0,0,1,-1,-1,1};
-    public:
-   
+    const int dx[8]={0, 0,1,-1,1,-1,1,-1};
+    const int dy[8]={1,-1,0,0,1,-1,-1,1};
+     
+public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
-        if(grid[0][0]==1)
-            return -1;
-    
-        const int n = grid.size();
-        const int m = grid[0].size();
         
-        vector<vector<int>>vis(n,vector<int>(m,0));
+        if(grid[0][0]==1) return -1;
+        int n= grid.size();
+       
         
         queue<pair<int,int>>q;
         q.push({0,0});
-        vis[0][0]=1;
-        int lvl=1;
+        grid[0][0]=1;
+        int lvl=0;
         while(!q.empty()){
             int sz=q.size();
-            
-            while(sz--){
-                auto node = q.front();
-                q.pop();
-                 if(node.first==n-1 && node.second == m-1){
-                        return lvl;
-                     }
-                for(int i=0;i<8;i++){
-                    int nx=node.first+dx[i];
-                    int ny=node.second+dy[i];
-                   
-                    if(nx <0 || nx >=n || ny<0 || ny>=m || vis[nx][ny] || grid[nx][ny]==1) continue;
-                    
-                    vis[nx][ny]=1;
-                    q.push({nx,ny});
-                }
-            }
-            
             lvl++;
+            while(sz--){
+                auto top = q.front();
+                   q.pop();
+                
+                if(top.first==n-1 &&top.second==n-1)
+                    return lvl;
+                
+                for(int k=0;k<8;k++){
+                    int ni=top.first+dx[k];
+                    int nj=top.second+dy[k];
+                    
+                    if(ni<0 || ni>=n || nj<0 || nj>=n || grid[ni][nj]==1) continue;
+                    grid[ni][nj]=1;
+                    q.push({ni, nj});   
+                }
+                
+            }
         }
-        return -1;
+        
+       return -1; 
     }
 };
+
+    
