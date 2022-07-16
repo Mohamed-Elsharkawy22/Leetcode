@@ -25,8 +25,8 @@ public:
             q.pop();
             
           for(int k=0;k<4;k++){
-              int ni=top.first+dx[k];
-              int nj=top.second+dy[k];
+              int ni=top.first+this->dx[k];
+              int nj=top.second+this->dy[k];
               
             if(ni<0 || ni>= n || nj<0 || nj>=n || grid[ni][nj]==1) continue;
               grid[ni][nj]=1;
