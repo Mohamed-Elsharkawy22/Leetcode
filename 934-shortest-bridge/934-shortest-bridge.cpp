@@ -1,63 +1,78 @@
 class Solution {
+    const int dx[4] = {0,0,-1,1};
+    const int dy[4] = {1,-1,0,0};
 public:
-    void dfs(int x,int y,vector<vector<int>>& grid,int dx[],int dy[]){
-        grid[x][y]=2;
-        for(int i=0;i<4;i++){
-            int nx=x+dx[i];
-            int ny=y+dy[i];
-            if(nx<0 || ny<0 || nx>=grid.size() || ny>=grid[0].size() || grid[nx][ny]==0 || grid[nx][ny]==2) continue;
-            dfs(nx,ny,grid,dx,dy);
-        }
-    }
-    void colour(vector<vector<int>>& grid,int dx[],int dy[]){
-        for(int i=0;i<grid.size();i++){
-            for(int j=0;j<grid[0].size();j++){
-                if(grid[i][j]==1){
-                    dfs(i,j,grid,dx,dy);
-                    return;
-                }
-            }
-        }
-    }
-    int shortestBridge(vector<vector<int>>& grid) {
-        int dx[4]={0,0,1,-1};
-        int dy[4]={1,-1,0,0};
-        
-        //coloured one island
-        colour(grid,dx,dy);
-
+    int shortestBridge(vector<vector<int>>& grid)
+    {
+        int n = grid.size();
     
-        // BFS traversal to find distance
-        queue<pair<int,int>>q;
-        for(int i=0;i<grid.size();i++){
-            for(int j=0;j<grid[0].size();j++){
-                if(grid[i][j]==2) q.push({i,j});
-            }
-        }
-        int dis=0;
-        while(!q.empty()){
-            int n=q.size();
-            for(int i=0;i<n;i++){
-                int x=q.front().first;
-                int y=q.front().second;
-                q.pop();
-                // cout<<x<<" "<<y<<endl;
-                for(int j=0;j<4;j++){
-                    int nx=x+dx[j];
-                    int ny=y+dy[j];
-                    if(nx<0 || ny<0 || nx>=grid.size() || ny>=grid[0].size()) continue; 
-                    
-                    if(grid[nx][ny]==1){
-                        return dis;
-                    }
-                    if(grid[nx][ny]>=2) continue;
-               
-                    q.push({nx,ny});
-                    grid[nx][ny]=1+grid[x][y];
+        queue< pair<int,int> > q;
+        bool br=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    q.push({i,j});
+                    grid[i][j]=0; //visited
+                    dfs(i, j, grid, q);
+                    br=1;
+                        break;
                 }
             }
-            dis++;
+            if(br) break;
         }
-        return -1;
+        
+        int lvl=0;
+        while(!q.empty())
+        {
+            int sz=q.size();
+            lvl++;
+            while(sz--)
+            {
+            auto top=q.front();
+               q.pop();
+            
+            for(int k=0;k<4;k++)
+            {
+                int ni=top.first+dx[k];
+                int nj=top.second+dy[k];
+                
+            if(ni < 0 || ni >= grid.size() || nj < 0 || nj >= grid.size()|| grid[ni][nj]==-1)                                continue;
+                if(grid[ni][nj]==1)
+                    return lvl-1;
+                else{
+                    q.push({ni,nj});
+                    grid[ni][nj]=-1;
+                }
+             }
+           }
+        }
+        
+    return -1;
     }
+    
+    void dfs(int i,int j, vector<vector<int>>& grid, queue<pair<int,int>>&q)
+    {    
+        for(int k=0;k<4;k++)
+        {
+            int ni=i+dx[k];
+            int nj=j+dy[k];
+            
+            
+        if(ni < 0 || ni >= grid.size() || nj < 0 || nj >= grid.size() || grid[ni][nj] == 0)
+            continue;
+            
+            
+            q.push({ni,nj});
+            grid[ni][nj]=0;
+            dfs(ni, nj, grid, q);
+            
+        }
+        
+    }
+    
+    
 };
+
