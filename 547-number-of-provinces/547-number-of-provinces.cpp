@@ -1,23 +1,41 @@
 class Solution {
 public:
-    int m[201];
-    
-    int rec(vector<vector<int>>& isConnected, int i){
-        if(m[i] == 0) return 0;
-        m[i]=0;
-        for(int j = 0; j < isConnected.size(); j++){
-            if(isConnected[i][j] == 1) rec(isConnected, j);
-        }
-        return 1;
-        
-    }
     int findCircleNum(vector<vector<int>>& isConnected) {
-        memset(m, -1, sizeof(m));
-        int sum = 0;
-        for(int i = 0; i < isConnected.size(); i++){
-            sum+= rec(isConnected, i);
+       const int n=isConnected.size();
+       vector<int>vis(n,0);
+       vector<vector<int>>graph;
+        
+        for(int i=0;i<isConnected.size();i++)
+        {  graph.push_back({});
+            for(int j=0;j<isConnected[i].size();j++)
+            {
+                if(isConnected[i][j])
+                {
+                    graph[i].push_back(j);
+                }
+            }
         }
-        return sum;
+        
+        int ans=0; 
+       for(int i=0;i<n;i++){
+           if(vis[i]==1) continue;
+           ans++;
+           dfs(i, graph, vis);
+       } 
+        return ans;
+    }
+    
+    void dfs(int node, vector<vector<int>>& isConnected, vector<int>&vis)
+    {
+        vis[node]=1;
+        for(int val:isConnected[node]){
+            if(vis[val]==1) continue;
+            dfs(val, isConnected,vis);
+        }
+        
         
     }
+    
+    
+    
 };
