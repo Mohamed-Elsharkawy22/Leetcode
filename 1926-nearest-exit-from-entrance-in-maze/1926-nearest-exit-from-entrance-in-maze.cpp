@@ -1,45 +1,50 @@
 class Solution {
+    const int dx[4]={1,-1,0,0};
+    const int dy[4]={0,0,-1,1};
 public:
-    bool isSafe(int row, int col, int rows, int cols){
-        return row >= 0 && row < rows && col >= 0 && col < cols;
-    }
-    
-    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
-        int rows = maze.size();
-        int cols = maze[0].size();
+    int nearestExit(vector<vector<char>>& grid, vector<int>& entrance) {
+        int n=grid.size();
+        int m=grid[0].size();
         
-        queue<vector<int>> bfs;
-        vector<int> temp{0, entrance[0], entrance[1]};
-        maze[entrance[0]][entrance[1]] = '#';
-        bfs.push(temp);
+        queue< pair<int, int> >q;
+        q.push({entrance[0],entrance[1]});
+        grid[entrance[0]][entrance[1]]='+';//vis
         
-        vector<pair<int, int>> moves{make_pair(1, 0), make_pair(-1, 0), make_pair(0, 1), make_pair(0, -1)};
+        int lvl=0;
         
-        while(!bfs.empty()){
-            vector<int> temp = bfs.front();
-            bfs.pop();
-            int row = temp[1];
-            int col = temp[2];
-            int dist = temp[0];
-            
-            if(col == 0 || col == cols - 1 || row == 0 || row == rows - 1){
-                if(row != entrance[0] || col != entrance[1]){
-                    return dist;
-                }
-            }
-            
-            for(auto mov : moves){
-                int adjRow = row + mov.first;
-                int adjCol = col + mov.second;
+      while(!q.empty())
+      {
+            int sz=q.size();
+            lvl++;
+            while(sz--)
+            {
+                auto top=q.front();
+                q.pop();
                 
-                if(isSafe(adjRow, adjCol, rows, cols) && maze[adjRow][adjCol] == '.'){
-                    maze[adjRow][adjCol] = '#';
-                    vector<int> temp{dist + 1, adjRow, adjCol};
-                    bfs.push(temp);
+               if((top.first==0 || top.first == n-1 || top.second==0 || top.second==m-1)
+                  &&lvl!=1)
+                       return lvl-1;
+                
+                
+               for(int k=0;k<4;k++)
+                {
+                 int ni=top.first+dx[k];
+                 int nj=top.second+dy[k];
+                           
+                 if(ni< 0 || ni > n-1 ||nj<0 || nj>m-1 || grid[ni][nj]=='+' )
+                     continue;
+             
+                  q.push({ni,nj});
+                  grid[ni][nj]='+';//vis
+                
+                  }
+                
+                
                 }
-            }
+            
         }
         
         return -1;
+        
     }
 };
