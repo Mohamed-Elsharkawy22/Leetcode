@@ -1,31 +1,21 @@
 class Solution {
 public:
-    bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        
-        set<int> s;
-        deque<int> q;
-        q.push_back(0);
-        s.insert(0);
-        
-        int n = rooms.size();
-        
-        while(!q.empty()){
-            int curr = q.front();
-            q.pop_front();
-            
-            for(int i=0;i<rooms[curr].size();i++){
-                if(s.count(rooms[curr][i])==0){
-                    q.push_back(rooms[curr][i]);
-                    s.insert(rooms[curr][i]);
-                }
-            }
-            
-        }
-        
-        if(s.size()==n){
-            return true;
-        }
-        
-        return false;
+    bool canVisitAllRooms(vector<vector<int>>& rooms)
+    {
+        const int n=rooms.size();
+        int cntNodes=0;
+        vector<int> vis(n,0);
+        dfs(0, rooms, vis, cntNodes);
+        return cntNodes==n;  
     }
+    
+   void dfs(int node,vector<vector<int>>& rooms,vector<int> &vis,int &cntNodes)
+   {
+       vis[node]=1;
+        cntNodes++;
+       for(int val: rooms[node]){
+           if(vis[val]==1) continue;
+           dfs(val,rooms,vis,cntNodes);
+       }
+   } 
 };
