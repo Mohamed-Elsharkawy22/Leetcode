@@ -1,68 +1,71 @@
-class DSU
+class Dsu
 {
-    private:
-      vector<int>parent, size;
-      int numOfSets;
-    
-    public:
-     DSU(int n)
-     {
-         numOfSets=n;
-         for(int i=0;i<n;i++){
-             parent.push_back(i);
-             size.push_back(1);
-         }
-     }
-    
-    int find(int u)
+  private:
+    vector<int>par,sz;
+  public:
+    Dsu(int n)
     {
-        if(parent[u] == u)
-            return u;
-        
-        return parent[u] = find(parent[u]);
+     for(int i=0;i<n;i++)
+      {
+         par.push_back(i);
+         sz.push_back(1);
+      }
     }
     
-    bool Connect(int u, int v)
+    
+
+    int find_par(int u)
     {
-        u = find(u);
-        v = find(v);
+       if(u==par[u])
+         return u;
+         
+        return par[u] = find_par(par[u]);
+    }
+     
+     
+    
+    bool can_connect(int u, int v)
+    {
+      u = find_par(u), v = find_par(v);
+    
+      if(u==v)
+        return 0;
         
-        if(u == v) 
-            return 0;
+        if(sz[u] > sz[v]) swap(u,v);
         
-        if(size[u] > size[v]) 
-            swap(v, u);
-        
-        parent[v] = u;
-        size[u] += size[v];
-        numOfSets--;
+        par[u]=v;
+        sz[v] += sz[u];
         
         return 1;
+    
     }
-    
-    int getNumberOfSets()
-    {
-        return numOfSets;    
-    }
-    
-    
 };
 
 class Solution {
 public:
     int makeConnected(int n, vector<vector<int>>& connections) {
-        const int m=connections.size();
-        if(m < n-1)
+     
+        if(n-1 > connections.size())
             return -1;
-        
-        DSU dsu(n);
-        
-        for(int i=0;i<m;i++){
-            dsu.Connect(connections[i][0], connections[i][1]);
+         Dsu dsu(n);
+        int cnt=0;
+        for(int i=0;i<connections.size();i++)
+        {
+            if(dsu.can_connect(connections[i][0],connections[i][1]))
+            {
+                cnt++;
+            }
         }
-        
-        return dsu.getNumberOfSets()-1;
+    
+    
+    return n-cnt-1;
+    
     }
 };
 
 
+
+
+    
+    
+    
