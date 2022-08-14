@@ -13,27 +13,30 @@ public:
     ListNode* reverseList(ListNode* head) {
         
        
-       
         ListNode* prev=NULL;
-        ListNode* ptr2=head;
-        
-        while(ptr2 != NULL)
-        {
-            
-            if(prev == NULL)
-            {
-                prev = new ListNode(ptr2->val);
-                ptr2=ptr2->next;
-            }else
-            { 
-                ListNode* ptr = new ListNode(ptr2->val);
-                ptr->next=prev;
-                prev=ptr;
-                ptr2=ptr2->next;
-            }
-               
-        }
+       
+        rev(head, prev);
         
         return prev;
+       
     }
+    
+    void rev(ListNode* ptr, ListNode* & prev){
+        
+        if(ptr == NULL)
+            return;
+        
+        if(prev == NULL)
+        {
+            prev = new ListNode(ptr->val);
+        }else{
+            
+            ListNode* temp = new ListNode(ptr->val);
+            temp->next = prev;
+            prev=temp;
+        }
+        
+        rev(ptr->next, prev);
+    }
+    
 };
