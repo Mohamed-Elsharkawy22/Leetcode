@@ -12,42 +12,30 @@
 class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {
-        auto ans = sol(root);
         
-        return ans.first;
+        if(sol(root))
+            return root;
+        
+        return NULL;
     }
     
     
-    pair<TreeNode*, int> sol(TreeNode* root){
+    bool sol(TreeNode* root){
         if(root==NULL)
-            return {NULL,0};
+            return 0;
         
+        bool left = sol(root->left);
         
-        int sz = root->val;
-        
-        auto left = sol(root->left);
-        
-        auto right = sol(root->right);
-        
-        sz += left.second + right.second;
-        
-         if(sz == 0)  // all subtree (root and its children should be NULL)
-           return {NULL,0}; 
-        
-      if(left.second > 0)  
-          root->left = left.first;
-        else
+        bool right = sol(root->right);
+    
+      if(!left) 
            root->left = NULL; 
-        
-        
-      if(right.second > 0)  
-          root->right = right.first;   
-        else
+    
+      if(!right)  
             root->right = NULL;
         
-       
-        
-        return {root, sz};
+      
+    return (root->val ==1 || left || right );
         
     }
     
