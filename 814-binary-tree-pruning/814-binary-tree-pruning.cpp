@@ -21,6 +21,8 @@ public:
     pair<TreeNode*, int> sol(TreeNode* root){
         if(root==NULL)
             return {NULL,0};
+        
+        
         int sz = root->val;
         
         auto left = sol(root->left);
@@ -29,8 +31,8 @@ public:
         
         sz += left.second + right.second;
         
-        if(sz==0)
-            return {NULL,0};
+         if(sz == 0)  // all subtree (root and its children should be NULL)
+           return {NULL,0}; 
         
       if(left.second > 0)  
           root->left = left.first;
@@ -43,6 +45,7 @@ public:
         else
             root->right = NULL;
         
+       
         
         return {root, sz};
         
