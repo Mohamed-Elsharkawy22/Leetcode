@@ -12,25 +12,24 @@
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        int ans=0;
-        
-        int mx=mxDepth(root, ans);
-        
-    return ans;
+         int ans=0;
+        int numlvl=mxDepth(root, ans);
+      
+        return ans-2;
     }
     
-    int mxDepth(TreeNode* root, int &sum){
+    int mxDepth(TreeNode* root, int &SumLeftAndRight){
         
-        if(root ==NULL) return 0;
+        if(root == nullptr)
+            return 0;
         
-        int lf= mxDepth(root->left,sum);
-        int rt= mxDepth(root->right,sum);
+        int lf= 1+ mxDepth(root->left,SumLeftAndRight);
+        int rt= 1+ mxDepth(root->right, SumLeftAndRight);
         
-        sum = max(sum, lf+rt );
-        return max(lf,rt)+1;
+        SumLeftAndRight=max(SumLeftAndRight, lf+rt);
         
+        return max(lf, rt);
     }
-    
     
     
 };
