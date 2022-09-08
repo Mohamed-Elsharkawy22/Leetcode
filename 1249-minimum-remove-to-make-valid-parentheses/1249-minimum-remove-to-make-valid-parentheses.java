@@ -1,39 +1,31 @@
 class Solution {
     public String minRemoveToMakeValid(String s) {
-       int cntOpenPara=0;
-        
+      
         StringBuilder ss = new StringBuilder(s);
+        Stack<Integer> st = new Stack<>();
         
-        for(int i=0;i<s.length();i++){
-            if(ss.charAt(i)=='(')
-                cntOpenPara++;
-            else if(ss.charAt(i) == ')'){
-                if(cntOpenPara > 0){
-                      cntOpenPara--;
-                }else{
-                    ss.setCharAt(i,'*');
-                }
-            }
-           
+        
+        for(int i=0;i<ss.length();i++){
+            
+              if(ss.charAt(i)=='(')
+                  st.push(i);
+              else if(ss.charAt(i)==')')
+              {
+                  if(st.isEmpty())
+                      ss.setCharAt(i,'*');
+                  else
+                      st.pop();
+              }
         }
         
-        cntOpenPara=0;
-         for(int i=s.length()-1 ;i>=0;i--){
-            if(ss.charAt(i)==')')
-                cntOpenPara++;
-            else if(ss.charAt(i) == '('){
-                if(cntOpenPara > 0){
-                      cntOpenPara--;
-                }else{
-                    ss.setCharAt(i,'*');
-                }
-            }
-           
+        while(!st.isEmpty()){
+            ss.setCharAt( st.pop() ,'*');
         }
         
         StringBuilder ans = new StringBuilder();
         
-        for(int i=0;i<ss.length();i++){
+        for(int i=0;i<ss.length();i++)
+        {
             if(ss.charAt(i)=='*') continue;
             
             ans.append(ss.charAt(i));
@@ -41,7 +33,6 @@ class Solution {
         
         
         return ans.toString();
-        
         
     }
 }
