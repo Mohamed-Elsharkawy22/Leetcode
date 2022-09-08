@@ -18,21 +18,28 @@ class Solution {
         
         List<Integer> ans = new ArrayList<>();
         
+        TreeNode curr = root;
        
-        solve(root, ans);
+          Stack<TreeNode> st = new Stack<>();
+        
+        
+          while(curr!= null || !st.isEmpty()){
+              
+              while(curr!= null){
+                  st.push(curr);
+                  curr=curr.left;
+              }
+              
+              curr = st.pop();
+              ans.add(curr.val);
+              curr = curr.right;
+          }
         
         return ans;
         
         
     }
     
-    public void solve(TreeNode root,List<Integer> ans ){
-        
-        if(root== null) return;
-        
-        solve(root.left, ans);
-        ans.add(root.val);
-        solve(root.right, ans);
-    }
+   
     
 }
