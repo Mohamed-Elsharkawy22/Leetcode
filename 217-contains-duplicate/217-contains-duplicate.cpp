@@ -2,7 +2,7 @@ class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
     
-       map<int, int>lookup;
+       unordered_map<int, int>lookup;
         
         for(int i=0;i<nums.size();i++){
             if(lookup.count(nums[i])>0)
