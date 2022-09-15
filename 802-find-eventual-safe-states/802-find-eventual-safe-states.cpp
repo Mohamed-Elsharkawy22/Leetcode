@@ -1,40 +1,48 @@
 class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+       
+        const int n=graph.size();
+    
+        vector<int>adj[n]; 
+        vector<int>in(n,0);
+        
+        queue<int>q;
+        for(int i=0;i<n;i++){
+            for(int v:graph[i])
+            {
+                in[i]++;
+                adj[v].push_back(i);
+            }
+            
+        } 
+    
+        for(int i=0;i<n;i++){
+            if(in[i]==0)
+                q.push(i);
+        }
         
         vector<int>ans;
-        unordered_map<int, int> safe;
         
-         
-         for(int i=0;i<graph.size();i++)
-             dfs(i,graph,safe,ans);
-        
-         for(int i=0;i<graph.size();i++)
+        while(!q.empty()){
+            int top=q.front();
+            q.pop();
+            
+            ans.push_back(top);
+            for(int v:adj[top])
             {
-             if(safe[i])
-             ans.push_back(i);
+                in[v]--;
+                if(in[v]==0)
+                    q.push(v);
             }
-         return ans;
+            
+        }
+        
+        
+     sort(ans.begin(), ans.end());
+        
+        return ans;
     
-    } 
-    
-    bool dfs(int node,vector<vector<int>>& graph, unordered_map<int, int> &safe, vector<int>&ans){
-        
-        if(safe.count(node)>0)
-            return safe[node];
-        
-           safe[node]=0;
-
-          for(int v:graph[node]){
-              if(!dfs(v,graph,safe,ans))
-                  return false;
-          }
-        
-        safe[node]=1;
-        return 1;
-        
-        
     }
-    
     
 };
