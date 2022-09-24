@@ -13,50 +13,38 @@ class Solution {
 public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
        
-        if(!root) return {};
-        map<TreeNode* ,TreeNode* > par;
-        par[root]=NULL;
+        if(!root) return vector<vector<int>>();
         
+       vector<int>cur;
         vector<vector<int>>ans;
-        sum(root,root->val, targetSum, par,ans);
+        sum(root,root->val, targetSum, cur,ans);
         
         return ans;
     }
     
     
-    void sum(TreeNode* root, int cur, int target, map<TreeNode* ,TreeNode*> &par, vector<vector<int>>&ans){
+    void sum(TreeNode* root, int cur, int target, vector<int> &curr, vector<vector<int>>&ans){
          
         if(root->left == NULL && root->right==NULL ){
             
             if(cur==target){
-                vector<int>temp;
-                TreeNode* r=root;
-                
-                while(r != NULL){
-                    temp.push_back(r->val);
-                    r = par[r];
-                }
-                reverse(temp.begin(), temp.end());
-                ans.push_back(temp);
+                curr.push_back(root->val);
+            ans.push_back(curr);
+                curr.pop_back();
             }
-            
             return;
         }
         
-        
+        curr.push_back(root->val);
         if(root->left){
-             par[root->left]=root;
-            sum(root->left,cur+root->left->val,target,par,ans);
-                  
+            sum(root->left,cur+root->left->val,target,curr,ans);
         }
         
         if(root->right){
-             par[root->right]=root;
-            sum(root->right,cur+root->right->val,target,par,ans);
-           
+            sum(root->right,cur+root->right->val,target,curr,ans);
         }
         
-        
+        curr.pop_back();
         
     }
     
