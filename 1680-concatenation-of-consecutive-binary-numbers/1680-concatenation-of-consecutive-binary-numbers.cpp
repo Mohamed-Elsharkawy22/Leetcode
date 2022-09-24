@@ -1,32 +1,19 @@
 class Solution {
 public:
     int concatenatedBinary(int n) {
-        
-    int ans=0;
-    int mod = static_cast<int>(1e9+7);
-      int base=1; 
-  
-         vector<int>bit;
+      
+        long long ans=0;
+         int len=0;
+         const int MOD = static_cast<int>(1e9+7);    
         for(int i=1;i<=n;i++){
-            int n=i;
-            bit.clear();
-            while(n){ 
-               bit.push_back(n%2);
-               n/=2;
-            }
             
-            for(int i=bit.size()-1 ;i>=0;i--){
-                ans = ans%mod *2 + bit[i];
-                ans%=mod;
-            }
-            
+            if( (i&(i-1)) == 0) len++;
+            ans = ((ans<<len)+i)%MOD;
         }
         
         return ans;
     }
 };
-
-
     
     
 
