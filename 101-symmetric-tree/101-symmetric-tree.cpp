@@ -12,7 +12,30 @@
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        return isSymmetricHelper(root,root);
+        
+        queue<pair<TreeNode *, TreeNode *>>q;
+        q.push({root->left, root->right});
+      
+        while(!q.empty()){
+            
+            auto frontQ = q.front();
+              q.pop();
+          
+            
+            if(frontQ.first == frontQ.second && frontQ.second == NULL)
+                continue;
+            
+            if(frontQ.first == NULL || frontQ.second == NULL)
+                return false;
+            
+            if(frontQ.first->val != frontQ.second->val)
+                 return false;
+            
+            q.push({frontQ.first->left, frontQ.second->right});
+            q.push({frontQ.first->right, frontQ.second->left});
+        }
+    
+        return true;
     }
     
     
