@@ -5,7 +5,6 @@ class Solution:
         start = 0
         for idx, char in enumerate(s):
             while char in st:
-                ans = max(ans, idx-start)
                 st.remove(s[start])
                 start+=1
             ans = max(ans, idx-start+1)    
