@@ -1,7 +1,7 @@
 class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
-        ans = 0
+        st = set() #max sz is 26 so o(1) space
         for char in sentence:
-            ans |= ( 1 << (ord(char) - ord('a')) )
+            st.add(char)
                 
-        return ans == (1<<26)-1
+        return len(st)==26
