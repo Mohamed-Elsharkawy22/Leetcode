@@ -11,23 +11,20 @@ public:
            if(pq.size() < k)
            {
                pq.push({-1*it.second, it.first });
-           }else if(-1*it.second < -1*count[pq.top().second]){
+           }else if(-1*it.second <= -1*count[pq.top().second]){
+               if(-1*it.second == -1*count[pq.top().second] && pq.top().second <= it.first )
+                    continue;
                pq.pop();
                pq.push({-1*it.second, it.first });
-           } else if(it.second == count[pq.top().second]){
-               if(pq.top().second > it.first ){
-                     pq.pop();
-               pq.push({-1*it.second, it.first });
-               }
-           }
+           } 
+           
         }
         
         vector<string>ans;
-        
         while(!pq.empty())
             ans.push_back(pq.top().second), pq.pop();
         
-        reverse(ans.begin(),ans.end());
+        reverse(ans.begin(), ans.end());
        
         return ans;
         
