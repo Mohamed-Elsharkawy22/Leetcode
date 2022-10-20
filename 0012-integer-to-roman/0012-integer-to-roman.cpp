@@ -1,29 +1,18 @@
 class Solution {
+    private:
+     int nums [13] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+     string romans [13] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X","IX", "V", "IV", "I"};
 public:
     string intToRoman(int num) {
-    map<int, string> mp;
-    mp[-1]="I";
-    mp[-5]="V";
-    mp[-10]="X";
-    mp[-50]="L";
-    mp[-100]="C";
-    mp[-500]="D";
-    mp[-1000]="M";
-    mp[-9]="IX";
-    mp[-4]="IV";
-    mp[-40]="XL";
-    mp[-90]="XC";
-    mp[-400]="CD";
-    mp[-900]="CM";    
-        
+       
       
     string ans="";
         
         int cnt=0;
-        for(auto &item : mp){ 
-            while(-1*item.first <= num ){
-                num-= -1*item.first;
-                ans.append(mp[item.first]);
+        for(int i=0;i<13;i++){ 
+            while(nums[i] <= num ){
+                num-= nums[i];
+                ans.append(romans[i]);
             }
         }
         
