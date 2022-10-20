@@ -23,7 +23,7 @@ public:
         for(auto &item : mp){ 
             while(-1*item.first <= num ){
                 num-= -1*item.first;
-                ans+= mp[item.first];
+                ans.append(mp[item.first]);
             }
         }
         
