@@ -3,17 +3,12 @@ public:
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
         
         
-        unordered_map<int,int>mp;
+        
         
         for(int i=0;i<matrix.size();i++){
             for(int j=0;j<matrix[0].size();j++){
-                
-                if(mp.count(i-j) == 0){
-                    mp[i-j] = matrix[i][j];
-                }else{
-                    if(mp[i-j] != matrix[i][j])
-                        return false;
-                }
+               if(i>0 && j>0 && matrix[i][j] != matrix[i-1][j-1])
+                   return false;
             }
         }
         
